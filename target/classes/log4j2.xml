@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Properties>
+		<Property name="basePath">logs</Property>
+		<Property name="LOG_PATTERN">[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] (%F:%L) - %m%n</Property>
+	</Properties>
+	<Appenders>
+		<RollingFile name="fileDebug" fileName="${basePath}/debug.log"
+			filePattern="${basePath}/debug.%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+			<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="fileProductInfo" fileName="${basePath}/fileProductInfo.log"
+			filePattern="${basePath}/fileProductInfo.%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} - %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+			
+		</RollingFile>
+		<RollingFile name="fileInfo" fileName="${basePath}/info.log"
+			filePattern="${basePath}/debug.%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="fileError" fileName="${basePath}/error.log"
+			filePattern="${basePath}/error.%d{yyyy-MM-dd}.log">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+
+		</RollingFile>
+
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout>
+				<Pattern>${LOG_PATTERN}</Pattern>
+			</PatternLayout>
+		</Console>
+	</Appenders>
+
+	<Loggers>
+		<Root level="trace">
+			<AppenderRef ref="fileDebug" level="debug" />
+			<AppenderRef ref="fileInfo" level="info" />
+			<AppenderRef ref="fileError" level="error" />
+			<AppenderRef ref="STDOUT" level="debug" />
+		</Root>
+		<Logger name="test.OutProductClickStat" level="info" additivity="true">
+			<AppenderRef ref="fileProductInfo" level="info" />
+		</Logger>
+
+	</Loggers>
+</Configuration>
