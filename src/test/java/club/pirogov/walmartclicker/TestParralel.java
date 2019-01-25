@@ -22,7 +22,7 @@ public class TestParralel {
 	//	testPutProductToBacket.openUrl("https://ifconfig.co/");
 		testPutProductToBacket.quitBrowser();
 	}
-	 @Test
+	@Test
 	//@RepeatedTest(1)
 	public void runTest2() {
 		TestPutProductToBacket testPutProductToBacket = new TestPutProductToBacket();
